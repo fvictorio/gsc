@@ -9,6 +9,8 @@ if (!configFile) {
   console.log('usage: gpm config.json')
 }
 
+const outputFile = process.argv[3]
+
 const config = JSON.parse(fs.readFileSync(configFile).toString())
 
 async function main(config) {
@@ -34,6 +36,10 @@ async function main(config) {
       ...accumulatedOutput,
       [project]: output,
     }
+  }
+
+  if (outputFile) {
+    fs.writeFileSync(outputFile, JSON.stringify(accumulatedOutput, null, 2))
   }
 }
 

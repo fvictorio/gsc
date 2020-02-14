@@ -22,7 +22,6 @@ async function execute() {
     fs.readFileSync('./build/contracts/Realitio.json').toString(),
   )
   shell.cd(originalPwd)
-  console.log(shell.ls())
 
   return {
     realitio: realitio.networks[50].address,

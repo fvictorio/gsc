@@ -4,8 +4,8 @@ const shell = require('shelljs')
 shell.config.fatal = true
 shell.config.verbose = true
 
-const name = 'conditional-tokens'
-const repositoryUrl = 'https://github.com/gnosis/conditional-tokens-contracts.git'
+const name = 'gnosis-safe'
+const repositoryUrl = 'https://github.com/gnosis/safe-contracts.git'
 const commit = 'master'
 
 async function execute() {
@@ -16,14 +16,14 @@ async function execute() {
   shell.cd(name)
   shell.exec(`git checkout "${commit}"`)
   shell.exec('npm install')
-  shell.exec('./node_modules/.bin/truffle deploy --network local')
-  const conditionalTokens = JSON.parse(
-    fs.readFileSync('./build/contracts/ConditionalTokens.json').toString(),
+  shell.exec('./node_modules/.bin/truffle deploy --network development')
+  const gnosisSafe = JSON.parse(
+    fs.readFileSync('./build/contracts/GnosisSafe.json').toString(),
   )
   shell.cd(originalPwd)
 
   return {
-    conditionalTokens: conditionalTokens.networks[50].address,
+    gnosisSafe: gnosisSafe.networks[50].address,
   }
 }
 

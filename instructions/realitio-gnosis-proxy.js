@@ -27,7 +27,6 @@ async function execute(input) {
     fs.readFileSync('./build/contracts/RealitioProxy.json').toString(),
   )
   shell.cd(originalPwd)
-  console.log(shell.ls())
 
   return {
     realitioGnosisProxy: realitioGnosisProxy.networks[50].address,

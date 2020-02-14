@@ -31,7 +31,8 @@ FROM node:10
 
 WORKDIR ganache
 ENV PATH="./node_modules/.bin:\${PATH}"
-RUN npm install @fvictorio/gpm ganache-cli@6.8.2
+RUN npm install ganache-cli@6.8.2
+RUN npm install @fvictorio/gpm
 
 COPY config.json prepare_db.sh ./
 RUN bash prepare_db.sh
@@ -48,7 +49,7 @@ mkdir db
 ganache-cli -d --db db -i 50 &
 PID=$!
 
-gpm config.json
+gpm config.json > addresses.json
 
 # stop ganache
 kill $PID
