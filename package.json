@@ -1,0 +1,30 @@
+{
+  "name": "@fvictorio/gpm",
+  "version": "0.0.1",
+  "description": "",
+  "bin": {
+    "gpm": "index.js",
+    "gpm-generate": "generate.js"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "prettier": "nb prettier --write '**/*.{js,json}'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "inquirer": "^7.0.4",
+    "shelljs": "^0.8.3",
+    "tsort": "^0.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "prettier": "^1.19.1"
+  }
+}
