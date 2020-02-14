@@ -5,7 +5,7 @@ shell.config.fatal = true
 shell.config.verbose = true
 
 const name = 'conditional-tokens'
-const repositoryUrl = 'git@github.com:gnosis/conditional-tokens-contracts.git'
+const repositoryUrl = 'https://github.com/gnosis/conditional-tokens-contracts.git'
 const commit = 'master'
 
 async function execute() {
@@ -23,7 +23,6 @@ async function execute() {
   shell.cd(originalPwd)
   console.log(shell.ls())
 
-  debugger
   return {
     conditionalTokens: conditionalTokens.networks[50].address,
   }

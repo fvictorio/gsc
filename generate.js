@@ -31,15 +31,15 @@ FROM node:10
 
 WORKDIR ganache
 ENV PATH="./node_modules/.bin:\${PATH}"
-RUN npm install @fvictorio/gpm
+RUN npm install @fvictorio/gpm ganache-cli@6.8.2
 
-COPY config.json config.json
+COPY config.json prepare_db.sh ./
 RUN bash prepare_db.sh
 
 EXPOSE 8545
 
 CMD ["./node_modules/.bin/ganache-cli", "-d", "--db", "db", "-h", "0.0.0.0", "-i", "50"]
-`
+`.trim()
 
 const prepareDb = `
 set -e # exit when any command fails
@@ -52,7 +52,7 @@ gpm config.json
 
 # stop ganache
 kill $PID
-`
+`.trim()
 
 inquirer.prompt(questions).then(answers => {
   const { projects } = answers
@@ -63,5 +63,5 @@ inquirer.prompt(questions).then(answers => {
 
   fs.writeFileSync('Dockerfile', dockerfile)
   fs.writeFileSync('prepare_db.sh', prepareDb)
-  fs.writeFileSync('config.json', config)
+  fs.writeFileSync('config.json', JSON.stringify(config, null, 2))
 })

@@ -5,7 +5,7 @@ shell.config.fatal = true
 shell.config.verbose = true
 
 const name = 'realitio'
-const repositoryUrl = 'git@github.com:realitio/realitio-contracts.git'
+const repositoryUrl = 'https://github.com/realitio/realitio-contracts.git'
 const commit = 'master'
 
 async function execute() {
@@ -24,7 +24,6 @@ async function execute() {
   shell.cd(originalPwd)
   console.log(shell.ls())
 
-  debugger
   return {
     realitio: realitio.networks[50].address,
   }

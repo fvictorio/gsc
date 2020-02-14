@@ -5,7 +5,7 @@ shell.config.fatal = true
 shell.config.verbose = true
 
 const name = 'realitio-gnosis-proxy'
-const repositoryUrl = 'git@github.com:fvictorio/realitio-gnosis-proxy.git'
+const repositoryUrl = 'https://github.com/fvictorio/realitio-gnosis-proxy.git'
 const commit = 'master'
 
 async function execute(input) {
