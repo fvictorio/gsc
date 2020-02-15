@@ -8,7 +8,6 @@ const questions = [
     name: 'projects',
     type: 'checkbox',
     message: 'Choose the projects you want to use',
-    default: [],
     choices: [
       {
         name: 'Realitio',
@@ -17,8 +16,14 @@ const questions = [
       {
         name: 'Gnosis Conditional Tokens',
         value: 'conditional-tokens',
-      }
+      },
     ],
+    validate: input => {
+      if (!input || !input.length) {
+        return 'You must select at least one project'
+      }
+      return true
+    }
   },
 ]
 
@@ -45,7 +50,7 @@ mkdir db
 ganache-cli -d --db db -i 50 &
 PID=$!
 
-gsc-run config.json > addresses.json
+gsc-run config.json addresses.json
 
 # stop ganache
 kill $PID
