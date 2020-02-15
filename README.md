@@ -19,3 +19,12 @@ All these problems can be fixed if you create a docker image with a ganache inst
 This project lets you do all of that in a very easy way.
 
 First, you run `npx @fvictorio/gsc` in an empty directory and choose the projects you want to include. This will create a `Dockerfile` and some other files. You can then do `docker build -t my-sandbox .` and then you can run it with `docker run -it -p 8545:8545 my-sandbox`. And that's it! You have a working ganache instance with the selected projects. You can also do `docker run -it my-sandbox cat addresses.json` to see the addresses of all the relevant contracts for each project.
+
+## Supported projects
+
+The supported project right now are:
+
+- [Realitio](https://github.com/realitio/realitio-contracts)
+- [Gnosis' Conditional Tokens](https://github.com/gnosis/conditional-tokens-contracts)
+
+If you want some other one to be included, just [open an issue](https://github.com/fvictorio/gsc/issues/new)
