@@ -17,10 +17,6 @@ const questions = [
         name: 'Gnosis Conditional Tokens',
         value: 'conditional-tokens',
       },
-      {
-        name: '0x',
-        value: '0x',
-      },
     ],
     validate: input => {
       if (!input || !input.length) {
