@@ -17,18 +17,24 @@ const questions = [
         name: 'Gnosis Conditional Tokens',
         value: 'conditional-tokens',
       },
+      {
+        name: '0x',
+        value: '0x',
+      },
     ],
     validate: input => {
       if (!input || !input.length) {
         return 'You must select at least one project'
       }
       return true
-    }
+    },
   },
 ]
 
 const dockerfile = `
 FROM node:10
+
+apt update && apt install -y python-pip
 
 WORKDIR ganache
 ENV PATH="./node_modules/.bin:\${PATH}"
@@ -40,14 +46,14 @@ RUN bash prepare_db.sh
 
 EXPOSE 8545
 
-CMD ["./node_modules/.bin/ganache-cli", "-d", "--db", "db", "-h", "0.0.0.0", "-i", "50"]
+CMD ["./node_modules/.bin/ganache-cli", "-d", "--db", "db", "-h", "0.0.0.0", "-i", "50", "-l", "10000000"]
 `.trim()
 
 const prepareDb = `
 set -e # exit when any command fails
 
 mkdir db
-ganache-cli -d --db db -i 50 &
+ganache-cli -d --db db -i 50 -l 10000000 &
 PID=$!
 
 gsc-run config.json addresses.json

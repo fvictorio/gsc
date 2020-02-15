@@ -5,7 +5,8 @@ shell.config.fatal = true
 shell.config.verbose = true
 
 const name = 'conditional-tokens'
-const repositoryUrl = 'https://github.com/gnosis/conditional-tokens-contracts.git'
+const repositoryUrl =
+  'https://github.com/gnosis/conditional-tokens-contracts.git'
 const commit = 'master'
 
 async function execute() {
