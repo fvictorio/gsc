@@ -27,4 +27,4 @@ The supported project right now are:
 - [Realitio](https://github.com/realitio/realitio-contracts)
 - [Gnosis' Conditional Tokens](https://github.com/gnosis/conditional-tokens-contracts)
 
-If you want some other one to be included, just [open an issue](https://github.com/fvictorio/gsc/issues/new)
+If you want some other one to be included, just [open an issue](https://github.com/fvictorio/gsc/issues/new).
