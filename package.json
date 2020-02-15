@@ -1,10 +1,10 @@
 {
-  "name": "@fvictorio/gpm",
-  "version": "0.0.2",
+  "name": "@fvictorio/gsc",
+  "version": "0.0.3",
   "description": "",
   "bin": {
-    "gpm": "index.js",
-    "gpm-generate": "generate.js"
+    "gsc": "generate.js",
+    "gsc-run": "index.js"
   },
   "scripts": {
     "lint": "eslint .",

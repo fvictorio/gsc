@@ -17,11 +17,7 @@ const questions = [
       {
         name: 'Gnosis Conditional Tokens',
         value: 'conditional-tokens',
-      },
-      {
-        name: 'Realitio-Gnosis Proxy',
-        value: 'realitio-gnosis-proxy',
-      },
+      }
     ],
   },
 ]
@@ -32,7 +28,7 @@ FROM node:10
 WORKDIR ganache
 ENV PATH="./node_modules/.bin:\${PATH}"
 RUN npm install ganache-cli@6.8.2
-RUN npm install @fvictorio/gpm
+RUN npm install @fvictorio/gsc
 
 COPY config.json prepare_db.sh ./
 RUN bash prepare_db.sh
@@ -49,7 +45,7 @@ mkdir db
 ganache-cli -d --db db -i 50 &
 PID=$!
 
-gpm config.json > addresses.json
+gsc-run config.json > addresses.json
 
 # stop ganache
 kill $PID

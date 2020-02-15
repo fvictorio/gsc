@@ -6,7 +6,7 @@ const tsort = require('tsort')
 const configFile = process.argv[2]
 
 if (!configFile) {
-  console.log('usage: gpm config.json')
+  console.log('usage: gsc config.json')
 }
 
 const outputFile = process.argv[3]
