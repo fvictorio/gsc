@@ -20,6 +20,8 @@ async function execute() {
   shell.exec(
     "sed -i 's/0x5409ed021d9299bf6814279a6a1411a7e866a631/0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1/' packages/dev-utils/src/constants.ts",
   )
+  // disable gen_python because I don't know how to point pip to python3
+  shell.exec("sed -i 's/ gen_python//' packages/abi-gen/package.json")
   shell.exec('yarn build', {
     env: {
       PKG: '@0x/migrations',
