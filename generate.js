@@ -34,7 +34,7 @@ const questions = [
 const dockerfile = `
 FROM node:10
 
-apt update && apt install -y python-pip
+RUN apt update && apt install -y python-pip
 
 WORKDIR ganache
 ENV PATH="./node_modules/.bin:\${PATH}"
