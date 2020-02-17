@@ -1,6 +1,8 @@
 const fs = require('fs')
 const shell = require('shelljs')
 
+const { createEthersInstance, readJson } = require('../utils')
+
 shell.config.fatal = true
 shell.config.verbose = true
 
@@ -19,13 +21,14 @@ async function execute(config) {
   shell.exec('npm install')
   shell.cd('truffle')
   shell.exec('../node_modules/.bin/truffle deploy --network development')
-  const realitio = JSON.parse(
-    fs.readFileSync('./build/contracts/Realitio.json').toString(),
-  )
+  const RealitioArtifact = readJson('./build/contracts/Realitio.json')
+
+  const Realitio = createEthersInstance(RealitioArtifact)
+
   shell.cd(originalPwd)
 
   return {
-    realitio: realitio.networks[50].address,
+    Realitio,
   }
 }
 

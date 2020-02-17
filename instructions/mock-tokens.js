@@ -1,6 +1,8 @@
 const fs = require('fs')
 const shell = require('shelljs')
 
+const { createEthersInstance, readJson } = require('../utils')
+
 shell.config.fatal = true
 shell.config.verbose = true
 
@@ -17,11 +19,17 @@ async function execute(config) {
   shell.cd(name)
   shell.exec(`git checkout "${commit}"`)
   shell.exec('yarn')
-  shell.exec('./node_modules/.bin/buidler run  --network localhost scripts/deploy.js')
-  const addresses = JSON.parse(fs.readFileSync('./addresses.json').toString())
+  shell.exec('./node_modules/.bin/truffle migrate --network development')
+
+  const ERC20FactoryArtifact = readJson('./build/contracts/ERC20Factory.json')
+
+  const ERC20Factory = createEthersInstance(ERC20FactoryArtifact)
+
   shell.cd(originalPwd)
 
-  return addresses
+  return {
+    ERC20Factory,
+  }
 }
 
 module.exports = {

@@ -51,7 +51,7 @@ ENV PATH="./node_modules/.bin:\${PATH}"
 RUN npm install ganache-cli@6.8.2
 RUN npm install @fvictorio/gsc@${gscVersion}
 
-COPY config.json prepare_db.sh ./
+COPY . .
 RUN bash prepare_db.sh
 
 EXPOSE 8545

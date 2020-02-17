@@ -17,6 +17,7 @@ module.exports = {
     'no-console': 'off',
     'prettier/prettier': 'warn',
     'import/no-dynamic-require': 'off',
+    'import/no-unresolved': 'off',
     'global-require': 'off',
     'no-await-in-loop': 'off',
     'no-restricted-syntax': 'off',

@@ -1,13 +1,15 @@
 const fs = require('fs')
 const shell = require('shelljs')
 
+const { createEthersInstance, readJson } = require('../utils')
+
 shell.config.fatal = true
 shell.config.verbose = true
 
 const name = 'realitio-gnosis-proxy'
 const repositoryUrl = 'https://github.com/fvictorio/realitio-gnosis-proxy.git'
 
-async function execute(config, input) {
+async function execute(config, env) {
   const commit = config.commit || 'master'
 
   const originalPwd = shell.pwd()
@@ -19,17 +21,20 @@ async function execute(config, input) {
   shell.exec('yarn')
 
   shell.env.CONDITIONAL_TOKENS_ADDRESS =
-    input['conditional-tokens'].conditionalTokens
-  shell.env.REALITIO_ADDRESS = input.realitio.realitio
+    env['conditional-tokens'].conditionalTokens.address
+  shell.env.REALITIO_ADDRESS = env.realitio.realitio.address
 
   shell.exec('./node_modules/.bin/truffle deploy --network development')
-  const realitioGnosisProxy = JSON.parse(
-    fs.readFileSync('./build/contracts/RealitioProxy.json').toString(),
+
+  const RealitioGnosisProxyArtifact = readJson(
+    './build/contracts/RealitioProxy.json',
   )
+  const RealitioGnosisProxy = createEthersInstance(RealitioGnosisProxyArtifact)
+
   shell.cd(originalPwd)
 
   return {
-    realitioGnosisProxy: realitioGnosisProxy.networks[50].address,
+    RealitioGnosisProxy,
   }
 }
 

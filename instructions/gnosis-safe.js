@@ -1,6 +1,8 @@
 const fs = require('fs')
 const shell = require('shelljs')
 
+const { createEthersInstance, readJson } = require('../utils')
+
 shell.config.fatal = true
 shell.config.verbose = true
 
@@ -19,41 +21,48 @@ async function execute(config) {
   shell.exec('npm install')
   shell.exec('npm run install')
   shell.exec('./node_modules/.bin/truffle migrate --network development')
-  const gnosisSafe = JSON.parse(
-    fs.readFileSync('./build/contracts/GnosisSafe.json').toString(),
+
+  const GnosisSafeArtifact = readJson('./build/contracts/GnosisSafe.json')
+  const ProxyFactoryArtifact = readJson('./build/contracts/ProxyFactory.json')
+  const CreateAndAddModulesArtifact = readJson(
+    './build/contracts/CreateAndAddModules.json',
   )
-  const proxyFactory = JSON.parse(
-    fs.readFileSync('./build/contracts/ProxyFactory.json').toString(),
+  const MultiSendArtifact = readJson('./build/contracts/MultiSend.json')
+  const StateChannelModuleArtifact = readJson(
+    './build/contracts/StateChannelModule.json',
   )
-  const createAndAddModules = JSON.parse(
-    fs.readFileSync('./build/contracts/CreateAndAddModules.json').toString(),
+  const DailyLimitModuleArtifact = readJson(
+    './build/contracts/DailyLimitModule.json',
   )
-  const multiSend = JSON.parse(
-    fs.readFileSync('./build/contracts/MultiSend.json').toString(),
+  const SocialRecoveryModuleArtifact = readJson(
+    './build/contracts/SocialRecoveryModule.json',
   )
-  const stateChannelModule = JSON.parse(
-    fs.readFileSync('./build/contracts/StateChannelModule.json').toString(),
+  const WhitelistModuleArtifact = readJson(
+    './build/contracts/WhitelistModule.json',
   )
-  const dailyLimitModule = JSON.parse(
-    fs.readFileSync('./build/contracts/DailyLimitModule.json').toString(),
+
+  const GnosisSafe = createEthersInstance(GnosisSafeArtifact)
+  const ProxyFactory = createEthersInstance(ProxyFactoryArtifact)
+  const CreateAndAddModules = createEthersInstance(CreateAndAddModulesArtifact)
+  const MultiSend = createEthersInstance(MultiSendArtifact)
+  const StateChannelModule = createEthersInstance(StateChannelModuleArtifact)
+  const DailyLimitModule = createEthersInstance(DailyLimitModuleArtifact)
+  const SocialRecoveryModule = createEthersInstance(
+    SocialRecoveryModuleArtifact,
   )
-  const socialRecoveryModule = JSON.parse(
-    fs.readFileSync('./build/contracts/SocialRecoveryModule.json').toString(),
-  )
-  const whitelistModule = JSON.parse(
-    fs.readFileSync('./build/contracts/WhitelistModule.json').toString(),
-  )
+  const WhitelistModule = createEthersInstance(WhitelistModuleArtifact)
+
   shell.cd(originalPwd)
 
   return {
-    gnosisSafe: gnosisSafe.networks[50].address,
-    proxyFactory: proxyFactory.networks[50].address,
-    createAndAddModules: createAndAddModules.networks[50].address,
-    multiSend: multiSend.networks[50].address,
-    stateChannelModule: stateChannelModule.networks[50].address,
-    dailyLimitModule: dailyLimitModule.networks[50].address,
-    socialRecoveryModule: socialRecoveryModule.networks[50].address,
-    whitelistModule: whitelistModule.networks[50].address,
+    GnosisSafe,
+    ProxyFactory,
+    CreateAndAddModules,
+    MultiSend,
+    StateChannelModule,
+    DailyLimitModule,
+    SocialRecoveryModule,
+    WhitelistModule,
   }
 }
 

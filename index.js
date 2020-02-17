@@ -1,13 +1,15 @@
 #!/usr/bin/env node
 
 const fs = require('fs')
+const path = require('path')
+
 const tsort = require('tsort')
 
-const configFile = process.argv[2]
-
-if (!configFile) {
+if (!process.argv[2]) {
   console.log('usage: gsc config.json')
 }
+
+const configFile = path.resolve(process.argv[2])
 
 const outputFile = process.argv[3]
 
@@ -32,14 +34,32 @@ async function main(config) {
   for (const project of sortedProjects) {
     const { execute } = require(`./instructions/${project}`)
     const output = await execute(config.projects[project], accumulatedOutput)
+
     accumulatedOutput = {
       ...accumulatedOutput,
       [project]: output,
     }
+
+    if (config.projects[project].postdeploy) {
+      const postdeployPath = path.resolve(
+        path.dirname(configFile),
+        config.projects[project].postdeploy,
+      )
+      const postdeploy = require(postdeployPath)
+      const newEnv = await postdeploy(accumulatedOutput)
+      accumulatedOutput = newEnv || accumulatedOutput
+    }
   }
 
   if (outputFile) {
-    fs.writeFileSync(outputFile, JSON.stringify(accumulatedOutput, null, 2))
+    const addresses = {}
+    for (const [project, contracts] of Object.entries(accumulatedOutput)) {
+      addresses[project] = {}
+      for (const [contractName, contract] of Object.entries(contracts)) {
+        addresses[project][contractName] = contract.address
+      }
+    }
+    fs.writeFileSync(outputFile, JSON.stringify(addresses, null, 2))
   }
 }
 

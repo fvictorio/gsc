@@ -1,6 +1,8 @@
 const fs = require('fs')
 const shell = require('shelljs')
 
+const { createEthersInstance, readJson } = require('../utils')
+
 shell.config.fatal = true
 shell.config.verbose = true
 
@@ -19,13 +21,14 @@ async function execute(config) {
   shell.exec(`git checkout "${commit}"`)
   shell.exec('npm install')
   shell.exec('./node_modules/.bin/truffle deploy --network local')
-  const conditionalTokens = JSON.parse(
-    fs.readFileSync('./build/contracts/ConditionalTokens.json').toString(),
+  const ConditionalTokensArtifact = readJson(
+    './build/contracts/ConditionalTokens.json',
   )
+  const ConditionalTokens = createEthersInstance(ConditionalTokensArtifact)
   shell.cd(originalPwd)
 
   return {
-    conditionalTokens: conditionalTokens.networks[50].address,
+    ConditionalTokens,
   }
 }
 

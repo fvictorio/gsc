@@ -14,6 +14,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@truffle/contract": "^4.1.9",
+    "ethers": "^5.0.0-beta.173",
     "inquirer": "^7.0.4",
     "shelljs": "^0.8.3",
     "tsort": "^0.0.1"
