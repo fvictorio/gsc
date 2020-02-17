@@ -3,6 +3,8 @@
 const fs = require('fs')
 const inquirer = require('inquirer')
 
+const gscVersion = require('./package.json').version
+
 const questions = [
   {
     name: 'projects',
@@ -47,7 +49,7 @@ RUN apt update && apt install -y python-pip
 WORKDIR ganache
 ENV PATH="./node_modules/.bin:\${PATH}"
 RUN npm install ganache-cli@6.8.2
-RUN npm install @fvictorio/gsc
+RUN npm install @fvictorio/gsc@${gscVersion}
 
 COPY config.json prepare_db.sh ./
 RUN bash prepare_db.sh
