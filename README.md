@@ -30,3 +30,8 @@ The supported project right now are:
 - [Realitio](https://github.com/realitio/realitio-contracts)
 
 If you want some other one to be included, just [open an issue](https://github.com/fvictorio/gsc/issues/new).
+
+## Mock tokens
+
+If you add the [Mock Tokens](https://github.com/fvictorio/mock-tokens) project, you'll get an `ERC20Factory` contract
+that you can use to create test tokens.
