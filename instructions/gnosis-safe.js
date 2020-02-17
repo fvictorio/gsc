@@ -6,7 +6,7 @@ shell.config.verbose = true
 
 const name = 'gnosis-safe'
 const repositoryUrl = 'https://github.com/gnosis/safe-contracts.git'
-const commit = 'master'
+const commit = 'development'
 
 async function execute() {
   const originalPwd = shell.pwd()
@@ -16,7 +16,8 @@ async function execute() {
   shell.cd(name)
   shell.exec(`git checkout "${commit}"`)
   shell.exec('npm install')
-  shell.exec('./node_modules/.bin/truffle deploy --network development')
+  shell.exec('npm run install')
+  shell.exec('./node_modules/.bin/truffle migrate --network development')
   const gnosisSafe = JSON.parse(
     fs.readFileSync('./build/contracts/GnosisSafe.json').toString(),
   )
