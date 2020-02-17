@@ -4,3 +4,6 @@ realitio/
 realitio-gnosis-proxy/
 gnosis-safe/
 0x/
+Dockerfile
+config.json
+prepare_db.sh

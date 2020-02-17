@@ -17,6 +17,10 @@ const questions = [
         name: 'Gnosis Conditional Tokens',
         value: 'conditional-tokens',
       },
+      {
+        name: 'Gnosis Contract Proxy Kit',
+        value: 'gnosis-cpk',
+      },
     ],
     validate: input => {
       if (!input || !input.length) {
