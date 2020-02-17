@@ -20,10 +20,38 @@ async function execute() {
   const gnosisSafe = JSON.parse(
     fs.readFileSync('./build/contracts/GnosisSafe.json').toString(),
   )
+  const proxyFactory = JSON.parse(
+    fs.readFileSync('./build/contracts/ProxyFactory.json').toString(),
+  )
+  const createAndAddModules = JSON.parse(
+    fs.readFileSync('./build/contracts/CreateAndAddModules.json').toString(),
+  )
+  const multiSend = JSON.parse(
+    fs.readFileSync('./build/contracts/MultiSend.json').toString(),
+  )
+  const stateChannelModule = JSON.parse(
+    fs.readFileSync('./build/contracts/StateChannelModule.json').toString(),
+  )
+  const dailyLimitModule = JSON.parse(
+    fs.readFileSync('./build/contracts/DailyLimitModule.json').toString(),
+  )
+  const socialRecoveryModule = JSON.parse(
+    fs.readFileSync('./build/contracts/SocialRecoveryModule.json').toString(),
+  )
+  const whitelistModule = JSON.parse(
+    fs.readFileSync('./build/contracts/WhitelistModule.json').toString(),
+  )
   shell.cd(originalPwd)
 
   return {
     gnosisSafe: gnosisSafe.networks[50].address,
+    proxyFactory: proxyFactory.networks[50].address,
+    createAndAddModules: createAndAddModules.networks[50].address,
+    multiSend: multiSend.networks[50].address,
+    stateChannelModule: stateChannelModule.networks[50].address,
+    dailyLimitModule: dailyLimitModule.networks[50].address,
+    socialRecoveryModule: socialRecoveryModule.networks[50].address,
+    whitelistModule: whitelistModule.networks[50].address,
   }
 }
 

@@ -10,16 +10,20 @@ const questions = [
     message: 'Choose the projects you want to use',
     choices: [
       {
-        name: 'Realitio',
-        value: 'realitio',
-      },
-      {
         name: 'Gnosis Conditional Tokens',
         value: 'conditional-tokens',
       },
       {
         name: 'Gnosis Contract Proxy Kit',
         value: 'gnosis-cpk',
+      },
+      {
+        name: 'Gnosis Safe',
+        value: 'gnosis-safe',
+      },
+      {
+        name: 'Realitio',
+        value: 'realitio',
       },
     ],
     validate: input => {
