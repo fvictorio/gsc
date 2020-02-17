@@ -22,6 +22,10 @@ const questions = [
         value: 'gnosis-safe',
       },
       {
+        name: 'Mock tokens',
+        value: 'mock-tokens',
+      },
+      {
         name: 'Realitio',
         value: 'realitio',
       },
