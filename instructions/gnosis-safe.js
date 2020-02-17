@@ -6,9 +6,10 @@ shell.config.verbose = true
 
 const name = 'gnosis-safe'
 const repositoryUrl = 'https://github.com/gnosis/safe-contracts.git'
-const commit = 'development'
 
-async function execute() {
+async function execute(config) {
+  const commit = config.commit || 'master'
+
   const originalPwd = shell.pwd()
   if (!fs.existsSync(name)) {
     shell.exec(`git clone "${repositoryUrl}" "${name}"`)

@@ -16,12 +16,12 @@ const config = JSON.parse(fs.readFileSync(configFile).toString())
 async function main(config) {
   const graph = tsort()
 
-  for (const project of config.projects) {
-    const { dependsOn } = require(`./instructions/${project.name}`)
+  for (const project of Object.keys(config.projects)) {
+    const { dependsOn } = require(`./instructions/${project}`)
     if (dependsOn.length) {
-      dependsOn.forEach(dependency => graph.add(dependency, project.name))
+      dependsOn.forEach(dependency => graph.add(dependency, project))
     } else {
-      graph.add(project.name)
+      graph.add(project)
     }
   }
 
@@ -31,7 +31,7 @@ async function main(config) {
 
   for (const project of sortedProjects) {
     const { execute } = require(`./instructions/${project}`)
-    const output = await execute(accumulatedOutput)
+    const output = await execute(config.projects[project], accumulatedOutput)
     accumulatedOutput = {
       ...accumulatedOutput,
       [project]: output,

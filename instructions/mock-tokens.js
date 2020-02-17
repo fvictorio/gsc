@@ -6,9 +6,10 @@ shell.config.verbose = true
 
 const name = 'mock-tokens'
 const repositoryUrl = 'https://github.com/fvictorio/mock-tokens.git'
-const commit = 'master'
 
-async function execute() {
+async function execute(config) {
+  const commit = config.commit || 'master'
+
   const originalPwd = shell.pwd()
   if (!fs.existsSync(name)) {
     shell.exec(`git clone "${repositoryUrl}" "${name}"`)

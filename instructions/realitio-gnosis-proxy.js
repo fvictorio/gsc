@@ -6,10 +6,10 @@ shell.config.verbose = true
 
 const name = 'realitio-gnosis-proxy'
 const repositoryUrl = 'https://github.com/fvictorio/realitio-gnosis-proxy.git'
-const commit = 'master'
 
-async function execute(input) {
-  console.log(input)
+async function execute(config, input) {
+  const commit = config.commit || 'master'
+
   const originalPwd = shell.pwd()
   if (!fs.existsSync(name)) {
     shell.exec(`git clone "${repositoryUrl}" "${name}"`)

@@ -6,9 +6,10 @@ shell.config.verbose = true
 
 const name = '0x'
 const repositoryUrl = 'https://github.com/0xProject/0x-monorepo.git'
-const commit = '2.1'
 
-async function execute() {
+async function execute(config) {
+  const commit = config.commit || '2.1'
+
   const originalPwd = shell.pwd()
   if (!fs.existsSync(name)) {
     shell.exec(`git clone "${repositoryUrl}" "${name}"`)

@@ -7,9 +7,10 @@ shell.config.verbose = true
 const name = 'gnosis-cpk'
 const repositoryUrl =
   'https://github.com/gnosis/contract-proxy-kit.git'
-const commit = 'master'
 
-async function execute() {
+async function execute(config) {
+  const commit = config.commit || 'master'
+
   const originalPwd = shell.pwd()
   if (!fs.existsSync(name)) {
     shell.exec(`git clone "${repositoryUrl}" "${name}"`)

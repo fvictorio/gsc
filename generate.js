@@ -74,8 +74,11 @@ inquirer.prompt(questions).then(answers => {
   const { projects } = answers
 
   const config = {
-    projects: projects.map(project => ({ name: project })),
+    projects: {},
   }
+  projects.forEach(project => {
+    config.projects[project] = {}
+  })
 
   fs.writeFileSync('Dockerfile', dockerfile)
   fs.writeFileSync('prepare_db.sh', prepareDb)
