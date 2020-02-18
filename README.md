@@ -35,5 +35,5 @@ If you want some other one to be included, just [open an issue](https://github.c
 ## Mock tokens
 
 You can select how many mock tokens will be created. The generated `config.json` will have a list of tokens under the
-`mock-tokens` project. By default each token is an empty object. For each one, you can add the properties `totalSupply`,
+`mock-tokens` project. By default each token is represented by an empty object. For each one, you can add the properties `totalSupply`,
 `name`, `symbol` and `decimals`.
