@@ -28,10 +28,6 @@ const questions = [
         value: 'gnosis-safe',
       },
       {
-        name: 'Mock tokens',
-        value: 'mock-tokens',
-      },
-      {
         name: 'Realitio',
         value: 'realitio',
       },
@@ -42,6 +38,12 @@ const questions = [
       }
       return true
     },
+  },
+  {
+    name: 'tokens',
+    type: 'number',
+    message: 'Choose how many mock tokens you want to add',
+    default: 0,
   },
 ]
 
@@ -77,7 +79,7 @@ kill $PID
 `.trim()
 
 inquirer.prompt(questions).then(answers => {
-  const { projects } = answers
+  const { projects, tokens } = answers
 
   const config = {
     projects: {},
@@ -85,6 +87,11 @@ inquirer.prompt(questions).then(answers => {
   projects.forEach(project => {
     config.projects[project] = {}
   })
+  if (tokens > 0) {
+    config.projects['mock-tokens'] = {
+      tokens: [...Array(tokens)].map(() => ({})),
+    }
+  }
 
   fs.writeFileSync('Dockerfile', dockerfile)
   fs.writeFileSync('prepare_db.sh', prepareDb)

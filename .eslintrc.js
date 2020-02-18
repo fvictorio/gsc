@@ -21,6 +21,7 @@ module.exports = {
     'global-require': 'off',
     'no-await-in-loop': 'off',
     'no-restricted-syntax': 'off',
+    'no-plusplus': 'off',
     'no-shadow': 'off',
   },
 }
