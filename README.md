@@ -26,6 +26,7 @@ The supported project right now are:
 
 - [Gnosis Conditional Tokens](https://github.com/gnosis/conditional-tokens-contracts)
 - [Gnosis Contract Proxy Kit](https://github.com/gnosis/contract-proxy-kit)
+- [Gnosis Dex Contracts](https://github.com/gnosis/dex-contracts)
 - [Gnosis Safe](https://github.com/gnosis/safe-contracts)
 - [Realitio](https://github.com/realitio/realitio-contracts)
 

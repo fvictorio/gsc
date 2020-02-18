@@ -20,6 +20,10 @@ const questions = [
         value: 'gnosis-cpk',
       },
       {
+        name: 'Gnosis Dex',
+        value: 'gnosis-dex',
+      },
+      {
         name: 'Gnosis Safe',
         value: 'gnosis-safe',
       },
